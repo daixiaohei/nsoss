@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>角色列表</title>
+    <link rel="stylesheet" href="../../lib/bui3/css/dpl.css"/>
+	<link rel="stylesheet" href="../../lib/bui3/css/bui.css"/>
+    <link href="../../global/css/global.css" rel="stylesheet"/>
+    <link href="../../global/css/content.css" rel="stylesheet"/>
+    
+    <script src="../../lib/sea.js"></script>
+    <script>seajs.use('biz/business/js/business');</script>
+</head>
+<body>
+<!-- 主界面 -->
+<div class="container" id="obj">
+    <div class="location">当前位置：增值业务管理 -&gt; 业务列表</div>
+    
+    <div class="blank10"></div>
+
+    <div class="search block">
+        <div class="h">
+            <span class="zicon-sprite zicon-magnifier"></span>
+            <h3>快速搜索</h3>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt">
+                <div class="search-bar">
+                    <label class="first txt-green">业务名称：</label>
+                    <input value="" type="text" name="srh_name" id="srh_name" class="input-small" />
+                    <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>搜&nbsp;索</span></a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3>业务分组列表</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini" id="addBtn" href="javascript:void(0);"><span>新&nbsp;增</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="editBtn" href="javascript:void(0);"><span>编&nbsp;辑</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="deleteBtn" href="javascript:void(0);"><span>删除选中</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div id="grid"></div>            
+        </div>
+    </div>
+
+</div>
+
+<!-- 增加和编辑界面 -->
+<div class="container hide" id="optObj">
+
+    <div class="location">当前位置：业务管理 -&gt; 添加业务</div>
+    
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3 id="optTitle">新增业务</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini btn-middle" id="backBtn" href="javascript:void(0);"><span>返 回</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt form">
+                <form method="post" enctype="multipart/form-data" action="" name="addUserForm">
+                <table class="data-form" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    
+                        <tr>
+                            <th scope="row">业务名称：</th>
+                            <td><input value="" type="text" name="name" id="name" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">业务编号：</th>
+                            <td><input value="" type="text" name="busiNo" id="busiNo" class="input-normal" /></td>
+                        </tr>
+                        <!-- <tr>
+                            <th scope="row">业务版本：</th>
+                            <td><input value="" type="text" name="busiVersion" id="busiVersion" class="input-normal" /></td>
+                        </tr> -->
+                        <tr>
+                            <th scope="row">备注：</th>
+                            <td><input value="" type="text" name="memo" id="memo" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">平台URL地址：</th>
+                            <td><input value="" type="text" name="url" id="url" class="input-normal" style="width:285px"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">图标：</th>
+                            <td><input value="" type="text" name="logo" id="logo" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">父节点：</th>
+                            <td><select name="parentId" id="parentId">
+                            <option value="0">无</option>
+                            <option value="1">广佛通</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">是否有子节点：</th>
+                            <!--  <td><input value="" type="text" name="leaf" id="leaf" class="input-normal" /></td>-->
+                            <td><input name="leaf" id="leaf" type="checkbox" value="1" checked="checked" />是  <input name="leaf" id="leaf" type="checkbox" value="0"/>否</td>
+                        </tr>
+                       
+                        <tr>
+                            <th scope="row">&nbsp;</th>
+                            <td>
+                                <a class="button button-primary button-mini btn-middle"  id="submitBtn" href="javascript:void(0);"><span>确 定</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

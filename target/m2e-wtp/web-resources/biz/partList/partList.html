@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>设备列表</title>
+    <link rel="stylesheet" href="../../lib/bui3/css/dpl.css"/>
+	<link rel="stylesheet" href="../../lib/bui3/css/bui.css"/>
+    <link href="../../global/css/global.css" rel="stylesheet"/>
+    <link href="../../global/css/content.css" rel="stylesheet"/>
+    
+    <script src="../../lib/sea.js"></script>
+    <script>seajs.use('biz/partList/js/partList');</script>
+</head>
+<body>
+<!-- 主界面 -->
+<div class="container" id="obj">
+    <div class="location">当前位置：设备部件管理 -&gt; 设备部件列表</div>
+    
+    <div class="blank10"></div>
+
+    <div class="search block">
+        <div class="h">
+            <span class="zicon-sprite zicon-magnifier"></span>
+            <h3>快速搜索</h3>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt">
+                <div class="search-bar">
+                    <label class="first txt-green">设备名：</label>
+                    <input value="" type="text" name="srh_name" id="srh_name" class="input-small" />
+                    <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>&nbsp;搜&nbsp;索&nbsp;</span></a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3>设备列表</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini" id="addBtn" href="javascript:void(0);"><span>&nbsp;新&nbsp;增&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="editBtn" href="javascript:void(0);"><span>&nbsp;编&nbsp;辑&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="deleteBtn" href="javascript:void(0);"><span>&nbsp;删除选中&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div id="grid"></div>            
+        </div>
+    </div>
+
+</div>
+
+<!-- 增加和编辑界面 -->
+<div class="container hide" id="optObj">
+
+    <div class="location">当前位置：设备管理 -&gt; 添加设备</div>
+    
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3 id="optTitle">新增设备</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini btn-middle" id="backBtn" href="javascript:void(0);"><span>&nbsp;返 &nbsp;回&nbsp;</span></a>
+                <a class="button button-primary button-mini btn-middle hide"  id="submitBtnAdd" href="javascript:void(0);""><span>&nbsp;确 &nbsp;定&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt form">
+                <div id="addGrid"></div> 
+                <div id="partListForm">
+                <form method="post" enctype="multipart/form-data" action="" name="">
+                <table class="data-form" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <th scope="row">设备扩展名：</th>
+                            <td><input value="" type="text" name="partNameNick" id="partNameNick" class="input-normal" /></td>
+                        </tr>
+                         <tr>
+                            <th scope="row">端口号：</th>
+                            <td><input value="" type="text" name="portNum" id="portNum" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">终端交易号：</th>
+                            <td><input value="" type="text" name="transNo" id="transNo" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">&nbsp;</th>
+                            <td>
+                                <a class="button button-primary button-mini btn-middle"  id="submitBtnEdit" href="javascript:void(0);""><span>&nbsp;确 &nbsp;定&nbsp;</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

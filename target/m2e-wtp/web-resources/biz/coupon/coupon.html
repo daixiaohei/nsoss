@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>优惠券列表</title>
+    <link rel="stylesheet" href="../../lib/bui3/css/dpl.css"/>
+	<link rel="stylesheet" href="../../lib/bui3/css/bui.css"/>
+    <link href="../../global/css/global.css" rel="stylesheet"/>
+    <link href="../../global/css/content.css" rel="stylesheet"/>
+    
+    <script src="../../lib/sea.js"></script>
+    <script>seajs.use('biz/coupon/js/coupon');</script>
+</head>
+<body>
+<!-- 主界面 -->
+<div class="container" id="obj">
+    <div class="location">当前位置：优惠券管理 -&gt; 优惠券列表</div>
+    
+    <div class="blank10"></div>
+
+    <div class="search block">
+        <div class="h">
+            <span class="zicon-sprite zicon-magnifier"></span>
+            <h3>快速搜索</h3>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt">
+                <div class="search-bar">
+                    <label class="first txt-green">优惠券名：</label>
+                    <input value="" type="text" name="srh_name" id="srh_name" class="input-small" />
+                    <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>&nbsp;搜&nbsp;索&nbsp;</span></a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3>优惠券列表</h3>
+            <div class="bar">
+            	<a class="button button-info button-mini" id="bindBusiBtn" href="javascript:void(0);"><span>绑定业务</span></a>&nbsp;&nbsp;
+                <a class="button button-info button-mini" id="bindDeviBtn" href="javascript:void(0);"><span>绑定网点</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="addBtn" href="javascript:void(0);"><span>&nbsp;新&nbsp;增&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="editBtn" href="javascript:void(0);"><span>&nbsp;编&nbsp;辑&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="deleteBtn" href="javascript:void(0);"><span>&nbsp;删除选中&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div id="grid"></div>            
+        </div>
+    </div>
+
+</div>
+
+<!-- 增加和编辑界面 -->
+<div class="container hide" id="optObj">
+
+    <div class="location">当前位置：优惠券管理 -&gt; 添加优惠券</div>
+    
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3 id="optTitle">新增优惠券</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini btn-middle" id="backBtn" href="javascript:void(0);"><span>&nbsp;返 &nbsp;回&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt form">
+                <form method="post" enctype="multipart/form-data" action="" name="addUserForm">
+                <table class="data-form" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <th scope="row">合作公司：</th>
+                            <td><select name="coopName" id="coopName"></select></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">优惠券名：</th>
+                            <td><input value="" type="text" name="name" id="name" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">起始时间：</th>
+                            <td><input value="" type="text" name="startDate" id="startDate" class="input-normal calendar calendar1" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">结束时间：</th>
+                            <td><input value="" type="text" name="endDate" id="endDate" class="input-normal calendar calendar2" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">优惠券类型：</th>
+                            <td><select name="couponType" id="couponType"><option value="0">无券号</option><option value="1">有券号</option></select></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">绑定类型：</th>
+                            <td><select name="bindType" id="bindType"><option value="0">无绑定</option><option value="1">绑定业务</option><option value="2">绑定银行卡</option></select></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">绑定银行卡：</th>
+                            <td><input value="" type="text" name="bindBank" id="bindBank" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">&nbsp;</th>
+                            <td><a class="button button-primary button-mini btn-middle"  id="submitBtn" href="javascript:void(0);""><span>&nbsp;确 &nbsp;定&nbsp;</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

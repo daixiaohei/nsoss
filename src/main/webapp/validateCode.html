@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>验证优惠券码</title>
+		<link rel="stylesheet" href="lib/bui3/css/dpl.css"/>
+		<link rel="stylesheet" href="lib/bui3/css/bui.css"/>
+		<link rel="stylesheet" href="global/css/global.css"/>
+		<link rel="stylesheet" href="global/css/vali-code.css"/>
+		<script src="lib/sea.js"></script>
+		<script>seajs.use('global/validateCode');</script>
+	</head>
+<body>
+<table class="login" cellpadding="0" cellspacing="0">
+    <!-- top -->
+    <tr>
+        <td class="login_top">
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <label class="login_title">运营管理系统</label>
+        </td>
+    </tr>
+    <!-- middle -->
+    <tr>
+        <td class="login_middle_1">
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	<img src="global/images/ncy_50.png" width="290" height="44"/>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" class="login_middle_2">
+            <!-- login form -->
+            <table id="login_form" class="vali-code-form" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="width:35%"><input type="hidden" id="id" name="id"/></td>
+                    <td class="login_form_label">验证码：</td>
+                    <td><input type="text" id="codeNo" name="codeNo" class="login_input" value="" size="20" maxlength="30" /></td>
+                </tr>
+                <tr>
+                    <td class="login_form_pad"></td>
+                    <td class="login_form_label"></td>
+                    <td><a id="submitBtn" class="button button-primary button-mini btn-middle" href="javascript:void(0);">
+                    		<span  class="login-load">&nbsp;&nbsp;查&nbsp;&nbsp;询&nbsp;&nbsp;</span>
+                    	</a></td>
+                </tr>
+                <tr>
+                    <td class="login_form_pad"></td>
+                    <td class="login_form_label"></td>
+                    <td><div id="code"></div></td>
+                </tr>
+                <tr>
+                
+                    <td id="login_auto_height" colspan="2">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="login_middle_3"><div class="login_welcome"></div></td>
+    </tr>
+    <!-- bottom -->
+    <tr>
+        <td class="login-bottom">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="login_form_pad"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

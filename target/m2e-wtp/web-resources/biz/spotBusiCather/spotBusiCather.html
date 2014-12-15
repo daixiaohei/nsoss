@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>网点业务数据汇总列表</title>
+    <link rel="stylesheet" href="../../lib/bui3/css/dpl.css"/>
+	<link rel="stylesheet" href="../../lib/bui3/css/bui.css"/>
+    <link href="../../global/css/global.css" rel="stylesheet"/>
+    <link href="../../global/css/content.css" rel="stylesheet"/>
+    
+    <script src="../../lib/sea.js"></script>
+    <script>seajs.use('biz/spotBusiCather/js/spotBusiCather');</script>
+</head>
+<body>
+<!-- 主界面 -->
+<div class="container" id="obj">
+    <div class="location">当前位置：网点业务汇总管理 -&gt; 网点业务汇总列表</div>
+    
+    <div class="blank10"></div>
+
+    <div class="search block">
+        <div class="h">
+            <span class="zicon-sprite zicon-magnifier"></span>
+            <h3>快速搜索</h3>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt">
+                <div class="search-bar">
+                    <label class="first txt-green">业务类型：</label>
+                    <select name="busiId" id="busiId"></select>
+                    <label class="first txt-green">区域：</label>
+                    <!-- <input value="" type="text" name="srh_cityNo" id="srh_cityNo" class="input-small" />-->
+                    <select name="cityNo" id="cityNo"></select>
+                    <label class="first txt-green">网点：</label>
+                    <select name="deviceListId" id="deviceListId"></select>
+                    <label class="first txt-green">开始时间：</label>
+                    <input value="" type="text" name="srh_startTime" id="srh_startTime" class="input-normal calendar calendar1" />
+                    <label class="first txt-green">结束时间：</label>
+                    <input value="" type="text" name="srh_endTime" id="srh_endTime" class="input-normal calendar calendar2" />
+                    
+                    <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>搜&nbsp;索</span></a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3>网点业务汇总列表</h3>
+            
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div id="grid"></div>            
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

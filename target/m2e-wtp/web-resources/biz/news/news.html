@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>业务数据汇总列表</title>
+    <link rel="stylesheet" href="../../lib/bui3/css/dpl.css"/>
+	<link rel="stylesheet" href="../../lib/bui3/css/bui.css"/>
+    <link href="../../global/css/global.css" rel="stylesheet"/>
+    <link href="../../global/css/content.css" rel="stylesheet"/>
+
+    <script src="../../lib/ckeditor_full/ckeditor.js"></script>
+    <script src="../../lib/sea.js"></script>
+    <script>seajs.use('biz/news/js/news');</script>
+</head>
+<body>
+<!-- 主界面 -->
+<div class="container" id="obj">
+    <div class="location">当前位置：新闻管理 -&gt; 新闻列表</div>
+    
+    <div class="blank10"></div>
+
+    <div class="search block">
+        <div class="h">
+            <span class="zicon-sprite zicon-magnifier"></span>
+            <h3>快速搜索</h3>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt">
+                <div class="search-bar">
+                    <label class="first txt-green">标题：</label>
+                    <input value="" type="text" name="title" id="srh_title" class="input-small" />
+                    <label class="first txt-green">发布日期：</label>
+                    <input value="" type="text" name="publishDate" id="srh_publishDate" class="input-normal calendar calendar1" />
+                    <label class="first txt-green">至</label>
+                    <input value="" type="text" name="publishDate1" id="srh_publishDate1" class="input-normal calendar calendar2" />
+                    <label class="first txt-green">状态：</label>
+                    <select name="publishStatusId" id="srh_publishStatusId"></select>
+                    <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>搜&nbsp;索</span></a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3>新闻列表</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini" id="addBtn" href="javascript:void(0);"><span>&nbsp;新&nbsp;增&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="editBtn" href="javascript:void(0);"><span>&nbsp;编&nbsp;辑&nbsp;</span></a>&nbsp;&nbsp;
+                <a class="button button-primary button-mini" id="deleteBtn" href="javascript:void(0);"><span>&nbsp;删除选中&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div id="grid"></div>            
+        </div>
+    </div>
+</div>
+
+<!-- 增加和编辑界面 -->
+<div class="container hide" id="optObj">
+
+    <div class="location">当前位置：新闻信息 -&gt; 添加新闻</div>
+    
+    <div class="blank10"></div>
+
+    <div class="block">
+        <div class="h">
+            <span class="zicon-sprite zicon-list"></span>
+            <h3 id="optTitle">新增新闻</h3>
+            <div class="bar">
+                <a class="button button-primary button-mini btn-middle" id="backBtn" href="javascript:void(0);"><span>&nbsp;返 &nbsp;回&nbsp;</span></a>
+            </div>
+        </div>
+        <div class="tl corner"></div><div class="tr corner"></div><div class="bl corner"></div><div class="br corner"></div>
+        <div class="cnt-wp">
+            <div class="cnt form">
+                <form method="post" enctype="multipart/form-data" action="" name="addUserForm">
+                <table class="data-form" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <th scope="row">标题：</th>
+                            <td><input value="" type="text" name="title" id="title" class="input-normal" /></td>
+                            <th scope="row">作者：</th>
+                            <td><input value="" type="text" name="author" id="author" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">摘要：</th>
+                            <td><input id="digest" type="text" name="digest" cols="21" rows="5" /></td>
+                            <th scope="row">关键字：</th>
+                            <td><input value="" type="text" name="keyword" id="keyword" class="input-normal" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">发布状态：</th>
+                            <td><input type="radio" id="publishStatusClose" name="publishStatus" value="1" checked="checked" />关闭&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="publishStatusRelease" name="publishStatus" value="0"/>发布</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">内容：</th>
+                            <td colspan="3" style="padding-top:10px;"><textarea id="content" class="content" name="content"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">&nbsp;</th>
+                            <td><a class="button button-primary button-mini btn-middle"  id="submitBtn" href="javascript:void(0);"><span>&nbsp;确 &nbsp;定&nbsp;</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
