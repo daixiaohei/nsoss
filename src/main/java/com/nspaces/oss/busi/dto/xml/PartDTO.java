@@ -32,6 +32,8 @@ public class PartDTO implements Serializable{
 	
 	private Integer timeId;//TimeID
 	
+	private int alertStatus = 0;
+	
 	
 	@XmlElement
 	public String getPartNo() {
@@ -138,5 +140,11 @@ public class PartDTO implements Serializable{
 	}
 	public void setTimeId(Integer timeId) {
 		this.timeId = timeId;
+	}
+	public int getAlertStatus() {
+		return alertStatus;
+	}
+	public void setAlertStatus(int alertStatus) {
+		this.alertStatus = alertStatus;
 	}
 }

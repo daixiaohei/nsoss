@@ -15,4 +15,10 @@ public interface NewsService {
 	public News insertAndUpdate(News news) throws Exception;
 	
 	public boolean deleteNews(Integer id) throws Exception;
+	
+	public List<NewsDTO> findNewsType() throws Exception ;
+	
+	public List<NewsDTO> findNewsListByJsonp(String newsType) throws Exception;
+	
+	public NewsDTO findNewsInfoByJsonp(Integer id) throws Exception ;
 }

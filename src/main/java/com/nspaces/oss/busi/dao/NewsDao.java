@@ -57,7 +57,8 @@ public class NewsDao extends BaseDAO{
 		StringBuffer sbd = new StringBuffer();
 		 sbd.append(" select ");
 		 sbd.append("  n.id,n.title,n.author,n.content,n.digest,n.img,n.publish_date as publishDate,n.keyword,       ");
-		 sbd.append("  case n.publish_status when 0 then '发布' when 1 then '关闭' else '无' end as publishStatus ");
+		 sbd.append("  case n.publish_status when 0 then '发布' when 1 then '关闭' else '无' end as publishStatus, ");
+		 sbd.append("  case n.news_type when 0 then '公司动态' when 1 then '行业动态' else '无' end as newsType ");
 		 sbd.append("  from news as n ");
 		 sbd.append("  where n.publish_status>=0");
 		
@@ -78,12 +79,19 @@ public class NewsDao extends BaseDAO{
 				&& !dataQueryDTO.getPublishStatusId().equals("")) {
 			sbd.append(" and n.publish_status = :publishStatusId ");
 		}
+		
+		if (null != dataQueryDTO.getNewsTypeId()
+				&& !dataQueryDTO.getNewsTypeId().equals("")) {
+			sbd.append(" and n.news_type = :newsTypeId ");
+		}
 
 		paramMap.put("title", dataQueryDTO.getTitle());
 		paramMap.put("publishDate", dataQueryDTO.getPublishDate());
 		paramMap.put("publishDate1", dataQueryDTO.getPublishDate1());
 		paramMap.put("publishStatusId", dataQueryDTO.getPublishStatusId());
 		paramMap.put("publishStatus", dataQueryDTO.getPublishStatus());
+		paramMap.put("newsTypeId", dataQueryDTO.getNewsTypeId());
+		paramMap.put("newsType", dataQueryDTO.getNewsType());
 
         System.out.println(sbd.toString());
 
@@ -114,6 +122,62 @@ public class NewsDao extends BaseDAO{
 		} else {
 			return null;
 		}
+
+	}
+	
+	/**
+	 * 新闻信息   新闻类型
+	 * @return
+	 * @throws Exception
+	 */
+	public List<NewsDTO> findNewsType() throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		String sql = "select distinct(n.news_type) as newsTypeId,case n.news_type when 0 then '公司动态' when 1 then '行业动态' else '无' end as newsType from news as n";
+		List<NewsDTO> list = jdbcTemplate.query(sql.toString(), paramMap,
+				new BeanPropertyRowMapper<NewsDTO>(NewsDTO.class));
+		if (list != null && list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+
+	}
+	
+	
+	/**
+	 * 新闻信息   通过新闻类型获得新闻信息
+	 * @return
+	 * @throws Exception
+	 */
+	public List<NewsDTO> findNewsListByJsonp(String newsType) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		String sql = "select * from news as n where 1 = 1";
+		if(null != newsType && !"".endsWith(newsType)){
+			sql += "and news_type='"+newsType+"'";
+		}
+		System.out.println(sql);
+		List<NewsDTO> list = jdbcTemplate.query(sql.toString(), paramMap,
+				new BeanPropertyRowMapper<NewsDTO>(NewsDTO.class));
+		if (list != null && list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+
+	}
+	
+	
+	/**
+	 * 新闻信息   通过id获得新闻内容
+	 * @return
+	 * @throws Exception
+	 */
+	public NewsDTO findNewsInfoByJsonp(Integer id) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		String sql = "select * from news as n where id='"+id+"'";
+		NewsDTO newsDTO = (NewsDTO) jdbcTemplate.query(sql.toString(), paramMap,
+				new BeanPropertyRowMapper<NewsDTO>(NewsDTO.class));
+		return newsDTO;
 
 	}
 	

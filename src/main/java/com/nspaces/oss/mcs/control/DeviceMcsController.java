@@ -1,5 +1,6 @@
 package com.nspaces.oss.mcs.control;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import com.nspaces.oss.base.util.StringUtil;
 import com.nspaces.oss.busi.dto.xml.DeviceCacheDTO;
 import com.nspaces.oss.busi.dto.xml.PartDTO;
 import com.nspaces.oss.busi.service.DeviceListService;
+import com.nspaces.oss.mcs.domain.DeviceLog;
 import com.nspaces.oss.mcs.domain.DeviceMcs;
 import com.nspaces.oss.mcs.domain.DeviceOut;
 import com.nspaces.oss.mcs.domain.PortData;
@@ -51,6 +53,15 @@ public class DeviceMcsController {
 		{
 			Date curDate = new Date();
 			deviceMcs.setCreatedAt(curDate.getTime());
+			deviceMcs.setCreatedTime(curDate);
+			
+			//过滤空闲的
+			for(int i=0;i<deviceMcs.getDatas().size();i++)
+			{
+				PortData cur = deviceMcs.getDatas().get(i);
+				if(cur.getPortValue() == 2)
+					deviceMcs.getDatas().remove(i);
+			}
 			
 			deviceMcsService.insertDeviceMcs(deviceMcs);
 			
@@ -64,6 +75,62 @@ public class DeviceMcsController {
 	}
 	
 	
+	/**
+	 * 插入IO输入状态设备状态
+	 * @param deviceMcs
+	 * @return
+	 */
+	@RequestMapping(value="history",method=RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<DeviceLog> findDeviceMcsHis(String deviceListIds, String curDate, Integer level)
+	{
+		Date searchDate = new Date();
+		
+		String[] arrStr = deviceListIds.split(",");
+		List<Integer> listIDS = new ArrayList<Integer>();
+		for(int i=0;i<arrStr.length;i++)
+		{
+			
+			if(StringUtil.isNotEmpty(arrStr[i]) )
+				listIDS.add(Integer.parseInt(arrStr[i]));
+		}
+		
+		if(null == level)
+		{
+			level =1;
+		}
+
+		if(null == curDate)
+		{
+			searchDate= new Date();
+		}else
+		{
+			try {
+				searchDate = DateUtil.parseToDate(curDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return deviceMcsService.findAllByDeviceLog(listIDS, searchDate.getTime(), level);
+	}
+	
+	@RequestMapping(value="dealDevice",method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String dealDevice(Integer deviceListId)
+	{
+		try
+		{
+			deviceMcsService.updateDeviceLog(deviceListId);
+			return "success";
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.info("更新异常信息出错！");
+			return "error";
+		}
+	}
 	
 	/**
 	 * 插入IO输入状态设备状态
@@ -81,11 +148,11 @@ public class DeviceMcsController {
 			if(null == curDate)
 			{
 				curTemp = new Date();
-				curDate=curTemp.getTime()-7200;
+				curDate=curTemp.getTime()-72000;
 				System.out.println(curDate);
 			}else
 			{
-				curDate = curDate -30000;
+				curDate = curDate -2900;
 			}
 			
 			//logger.info("curDate:" + curDate.intValue() + " date" + curDate);
@@ -167,6 +234,12 @@ public class DeviceMcsController {
         newPartDTO.setPartNo(curPartDTO.getPartNo());
         newPartDTO.setPortNum(curPartDTO.getPortNum());
         newPartDTO.setCurValue(new Integer(curValue));
+        
+        if(curPartDTO.getPush() == curValue)
+        {
+        	newPartDTO.setAlertStatus(1);
+        }
+        
         if(curValue==1)
         {
         	newPartDTO.setCurValueName(curPartDTO.getValue1Name());
@@ -213,19 +286,20 @@ public class DeviceMcsController {
 		try
 		{
 			DeviceMcs deviceMcs = new DeviceMcs();
-			deviceMcs.setDeviceListId(3);
+			deviceMcs.setDeviceListId(34);
 			PortData portData = new PortData();
-			portData.setPortNum("I0.1");
-			portData.setPortValue(1);
+			portData.setPortNum("I3.0");
+			portData.setPortValue(0);
 			
 			PortData portData1 = new PortData();
-			portData1.setPortNum("I0.2");
+			portData1.setPortNum("I2.1");
 			portData1.setPortValue(1);
 			deviceMcs.getDatas().add(portData);
 			deviceMcs.getDatas().add(portData1);
 			
 			Date curDate = new Date();
 			deviceMcs.setCreatedAt(curDate.getTime());
+			deviceMcs.setCreatedTime(curDate);
 			System.out.println(curDate.getTime());
 			deviceMcsService.insertDeviceMcs(deviceMcs);
 			

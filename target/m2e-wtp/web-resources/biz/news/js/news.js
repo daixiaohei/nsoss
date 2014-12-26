@@ -13,14 +13,16 @@ define('biz/news/js/news',function(require,exports,module){
 	var searchUrl = baseUrl+'/news/queryNews.do';
 	var deleteUrl = baseUrl+'/news/deleteNews.do';
 	var initPublishStatusUrl = baseUrl+'/news/findPublishStatus.do';
+	var initNewsTypeUrl = baseUrl+'/news/findNewsType.do';
 
 	//表头
 	var columns = [
         {title : '发布日期',dataIndex :'publishDate', width:'15%',elCls:'center'},
-        {title : '标题',dataIndex :'title', width:'15%',elCls:'center'},
-        {title : '作者',dataIndex :'author', width:'15%',elCls:'center'},
-        {title : '关键字',dataIndex :'digest', width:'15%',elCls:'center'},
-        {title : '发布状态',dataIndex :'publishStatus', width:'15%',elCls:'center'}
+        {title : '标题',dataIndex :'title', width:'30%',elCls:'center'},
+        {title : '作者',dataIndex :'author', width:'10%',elCls:'center'},
+        {title : '关键字',dataIndex :'digest', width:'25%',elCls:'center'},
+        {title : '发布状态',dataIndex :'publishStatus', width:'10%',elCls:'center'},
+        {title : '新闻类型',dataIndex :'newsType', width:'10%',elCls:'center'}
        
     ];
     
@@ -51,7 +53,7 @@ define('biz/news/js/news',function(require,exports,module){
 	//用户操作 (CRUD) 
     var Operation = {
     	Condition: {title:'',publishDate:'',publishDate1:'',publishStatusId:''},
-    	data: {id:null,title:null,author:null,digest:null,keyword:null,
+    	data: {id:null,title:null,author:null,digest:null,img:null,keyword:null,
             content:null,publishStatus:null},
 
 	    find: function(){//查
@@ -79,6 +81,15 @@ define('biz/news/js/news',function(require,exports,module){
 	    	if(selections[0].publishStatus === '发布'){
                 $("#publishStatusRelease").attr("checked","checked");
                 selections[0].publishStatus = 0;
+            }
+	    	
+	    	if(selections[0].newsType === '公司动态'){
+                $("#newsCompaney").attr("checked","checked");
+                selections[0].newsType = 0;
+            }
+	    	if(selections[0].newsType === '行业动态'){
+                $("#newsIndustry").attr("checked","checked");
+                selections[0].publishStatus = 1;
             }
 	        $("#digest").val(selections[0].digest).change();
 	        $("#content").val(selections[0].content).change();
@@ -116,6 +127,20 @@ define('biz/news/js/news',function(require,exports,module){
         		
     		});
     	},
+    	initType:function(){
+    		$.get(initNewsTypeUrl,function(ret){
+    			console.log(ret);
+    			$("#srh_newsTypeId").empty();
+    			var options = '';
+    			options+='<option  value="">全部</option>';
+    			for(var d in ret){
+    				options += '<option  value="'+ret[d].newsTypeId+'">'+ret[d].newsType+'</option>';
+    			}    
+    			
+        		$("#srh_newsTypeId").append(options);
+        		
+    		});
+    	},
     	 back: function(){//回退
  	    	$("#optObj").hide();$("#obj").show();
  	    	$("#optObj").find('input[type="text"]').each(function(){
@@ -124,12 +149,18 @@ define('biz/news/js/news',function(require,exports,module){
  	    	$("#digest").val("");
  	    	$("#content").val("");
  	        Operation.data.id = null;
+ 	        editor.setData('');
  	    },
     	submit: function(){//提交
             //得到radio的值
             $('input[name="publishStatus"]').each(function(){
                 if(this.checked){
                     Operation.data.publishStatus = this.value;
+                }
+            });
+            $('input[name="newsType"]').each(function(){
+                if(this.checked){
+                    Operation.data.newsType = this.value;
                 }
             });
             //得到content的值
@@ -161,6 +192,7 @@ define('biz/news/js/news',function(require,exports,module){
 	   
     };
     Operation.initStatus();
+    Operation.initType();
     //事件映射
     var eventMap = {
         //按钮事件
@@ -175,12 +207,15 @@ define('biz/news/js/news',function(require,exports,module){
         "#srh_publishDate change" : function(){Operation.Condition.publishDate = $(this).trim();},
         "#srh_publishDate1 change" : function(){Operation.Condition.publishDate1 = $(this).trim();},
         "#srh_publishStatusId change" : function(){Operation.Condition.publishStatusId = $(this).trim();},
+        "#srh_newsTypeId change" : function(){Operation.Condition.newsTypeId = $(this).trim();},
         //修改数据
         "#title change" : function(){Operation.data.title = $(this).trim();},
         "#author change" : function(){Operation.data.author = $(this).trim();},
+        "#img change" : function(){Operation.data.img = $(this).trim();},
         "#keyword change" : function(){Operation.data.keyword = $(this).trim();},
         "#digest change" : function(){Operation.data.digest = $(this).trim();},
-        "#content change" : function(){Operation.data.content = $(this).trim();}
+        "#content change" : function(){Operation.data.content = $(this).trim();},
+        "#newsType change" : function(){Operation.data.newsType = $(this).trim();}
 	};
 	
     J.FireEvent(eventMap);

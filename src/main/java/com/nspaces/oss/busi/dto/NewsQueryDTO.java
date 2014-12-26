@@ -12,6 +12,24 @@ public class NewsQueryDTO {
 	private Integer publishStatus;
 	private String publishStatusId;
 	private String publishDate1;
+	private String newsTypeId;
+	private Integer newsType;
+
+	public String getNewsTypeId() {
+		return newsTypeId;
+	}
+
+	public void setNewsTypeId(String newsTypeId) {
+		this.newsTypeId = newsTypeId;
+	}
+
+	public Integer getNewsType() {
+		return newsType;
+	}
+
+	public void setNewsType(Integer newsType) {
+		this.newsType = newsType;
+	}
 
 	public String getPublishDate1() {
 		return publishDate1;
@@ -51,8 +69,6 @@ public class NewsQueryDTO {
 		this.publishDate = publishDate;
 	}
 
-
-
 	public Integer getPublishStatus() {
 		return publishStatus;
 	}
@@ -76,6 +92,7 @@ public class NewsQueryDTO {
 	public void setLimit(Integer limit) {
 		this.limit = limit;
 	}
+
 	public String getPublishStatusId() {
 		return publishStatusId;
 	}
@@ -83,6 +100,7 @@ public class NewsQueryDTO {
 	public void setPublishStatusId(String publishStatusId) {
 		this.publishStatusId = publishStatusId;
 	}
+
 	public PaginationCondition getPaginationCondition() {
 		if (this.curPage != null && this.curPage > 1) {
 			paginationCondition.setPage(this.curPage);

@@ -35,4 +35,19 @@ public class NewsServiceImpl implements NewsService {
 	public boolean deleteNews(Integer id) throws Exception{
 		return newsDao.deleteNews(id);
 	}
+	
+	@Override
+	public List<NewsDTO> findNewsType() throws Exception{
+		return newsDao.findNewsType();
+	}
+	
+	@Override
+	public List<NewsDTO> findNewsListByJsonp(String newsType) throws Exception{
+		return newsDao.findNewsListByJsonp(newsType);
+	}
+	
+	@Override
+	public NewsDTO findNewsInfoByJsonp(Integer id) throws Exception {
+		return newsDao.findNewsInfoByJsonp(id);
+	}
 }

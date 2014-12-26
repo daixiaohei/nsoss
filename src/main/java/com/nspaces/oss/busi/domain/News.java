@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.xml.soap.Text;
 
-
 public class News implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,77 +17,85 @@ public class News implements Serializable {
 	private String keyword;// 关键字
 	private String content;// 内容
 	private String publishStatus;// 发布状态 0 发布 1 关闭
+	private String newsType;// 类型 0 公司动态 1 行业动态
 
+	public String getNewsType() {
+		return newsType;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setNewsType(String newsType) {
+		this.newsType = newsType;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public String getDigest() {
-        return digest;
-    }
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
-    public void setDigest(String digest) {
-        this.digest = digest;
-    }
+	public String getDigest() {
+		return digest;
+	}
 
-    public String getImg() {
-        return img;
-    }
+	public void setDigest(String digest) {
+		this.digest = digest;
+	}
 
-    public void setImg(String img) {
-        this.img = img;
-    }
+	public String getImg() {
+		return img;
+	}
 
-    public String getPublishDate() {
-        return publishDate;
-    }
+	public void setImg(String img) {
+		this.img = img;
+	}
 
-    public void setPublishDate(String publishDate) {
-        this.publishDate = publishDate;
-    }
+	public String getPublishDate() {
+		return publishDate;
+	}
 
-    public String getKeyword() {
-        return keyword;
-    }
+	public void setPublishDate(String publishDate) {
+		this.publishDate = publishDate;
+	}
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
+	public String getKeyword() {
+		return keyword;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public String getPublishStatus() {
-        return publishStatus;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setPublishStatus(String publishStatus) {
-        this.publishStatus = publishStatus;
-    }
+	public String getPublishStatus() {
+		return publishStatus;
+	}
+
+	public void setPublishStatus(String publishStatus) {
+		this.publishStatus = publishStatus;
+	}
 }

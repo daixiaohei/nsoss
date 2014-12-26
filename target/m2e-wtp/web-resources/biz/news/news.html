@@ -36,7 +36,9 @@
                     <label class="first txt-green">至</label>
                     <input value="" type="text" name="publishDate1" id="srh_publishDate1" class="input-normal calendar calendar2" />
                     <label class="first txt-green">状态：</label>
-                    <select name="publishStatusId" id="srh_publishStatusId"></select>
+                    <select name="publishStatusId" id="srh_publishStatusId"></select><br><br>
+                    <label class="first txt-green">新闻类型：</label>
+                    <select name="newsTypeId" id="srh_newsTypeId"></select>
                     <label><a class="button button-primary button-mini btn-middle" id="searchBtn" href="javascript:void(0);"><span>搜&nbsp;索</span></a></label>
                 </div>
             </div>
@@ -91,14 +93,23 @@
                         </tr>
                         <tr>
                             <th scope="row">摘要：</th>
-                            <td><input id="digest" type="text" name="digest" cols="21" rows="5" /></td>
-                            <th scope="row">关键字：</th>
-                            <td><input value="" type="text" name="keyword" id="keyword" class="input-normal" /></td>
+                            <td colspan="2"><textarea id="digest" name="digest"></textarea>
+                            </td>
+                            
                         </tr>
+                        <tr>
+                        <th scope="row">图片地址：</th>
+                            <td><input value="" type="text" name="img" id="img" class="input-normal" /></td>
+                        <th scope="row">关键字：</th>
+                            <td><input value="" type="text" name="keyword" id="keyword" class="input-normal" /></td>
+                            </tr>
                         <tr>
                             <th scope="row">发布状态：</th>
                             <td><input type="radio" id="publishStatusClose" name="publishStatus" value="1" checked="checked" />关闭&nbsp;&nbsp;&nbsp;
                                 <input type="radio" id="publishStatusRelease" name="publishStatus" value="0"/>发布</td>
+                            <th scope="row">新闻类型：</th>
+                            <td><input type="radio" id="newsCompaney" name="newsType" value="0" checked="checked" />公司动态&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="newsIndustry" name="newsType" value="1"/>行业动态</td>
                         </tr>
                         <tr>
                             <th scope="row">内容：</th>
